@@ -1,0 +1,23 @@
+{
+  "name": "web-lab-cart-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server db.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/max80713/web-lab-cart-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/max80713/web-lab-cart-api/issues"
+  },
+  "homepage": "https://github.com/max80713/web-lab-cart-api#readme",
+  "dependencies": {
+    "json-server": "^0.16.3"
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "iPad",
+      "variants": [
+        {
+          "color": "銀色",
+          "capacity": "64GB",
+          "quantity": 1
+        },
+        {
+          "color": "銀色",
+          "capacity": "256GB",
+          "quantity": 1
+        },
+        {
+          "color": "太空灰色",
+          "capacity": "64GB",
+          "quantity": 1
+        },
+        {
+          "color": "太空灰色",
+          "capacity": "256GB",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "iPad",
+      "variants": [
+        {
+          "color": "太空灰色",
+          "capacity": "64GB",
+          "quantity": 1
+        },
+        {
+          "color": "太空灰色",
+          "capacity": "256GB",
+          "quantity": 1
+        },
+        {
+          "color": "粉紅色",
+          "capacity": "64GB",
+          "quantity": 1
+        },
+        {
+          "color": "粉紅色",
+          "capacity": "256GB",
+          "quantity": 1
+        },
+        {
+          "color": "紫色",
+          "capacity": "64GB",
+          "quantity": 1
+        },
+        {
+          "color": "紫色",
+          "capacity": "256GB",
+          "quantity": 1
+        },
+        {
+          "color": "星光色",
+          "capacity": "64GB",
+          "quantity": 1
+        },
+        {
+          "color": "星光色",
+          "capacity": "256GB",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "iPhone13",
+      "variants": [
+        {
+          "color": "星光色",
+          "capacity": "128GB",
+          "quantity": 1
+        },
+        {
+          "color": "星光色",
+          "capacity": "256GB",
+          "quantity": 1
+        },
+        {
+          "color": "星光色",
+          "capacity": "512GB",
+          "quantity": 1
+        },
+        {
+          "color": "午夜色",
+          "capacity": "128GB",
+          "quantity": 1
+        },
+        {
+          "color": "午夜色",
+          "capacity": "256GB",
+          "quantity": 1
+        },
+        {
+          "color": "午夜色",
+          "capacity": "512GB",
+          "quantity": 1
+        },
+        {
+          "color": "藍色",
+          "capacity": "128GB",
+          "quantity": 1
+        },
+        {
+          "color": "藍色",
+          "capacity": "256GB",
+          "quantity": 1
+        },
+        {
+          "color": "藍色",
+          "capacity": "512GB",
+          "quantity": 1
+        },
+        {
+          "color": "粉紅色",
+          "capacity": "128GB",
+          "quantity": 1
+        },
+        {
+          "color": "粉紅色",
+          "capacity": "256GB",
+          "quantity": 1
+        },
+        {
+          "color": "粉紅色",
+          "capacity": "512GB",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "cart": [
+    {
+      "name": "iPad",
+      "color": "銀色",
+      "capacity": "64GB",
+      "quantity": 1,
+      "id": 1
+    }
+  ]
+}
