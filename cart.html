@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物車</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+</head>
+
+<body>
+    <section class="pt-5 pb-3 bg-light">
+        <div class="container">
+            <h1 class="mb-3 d-flex align-items-center">
+                <span class="me-2">購物車</span>
+                <a href="/index.html"><button class="btn btn-outline-primary">回首頁</button> </a>
+            </h1>
+        </div>
+    </section>
+    <section class="py-3 container">
+        <table id="cart" class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">商品名稱</th>
+                    <th scope="col">顏色</th>
+                    <th scope="col">尺寸</th>
+                    <th scope="col">數量</th>
+                    <th scope="col">動作</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script>
+        const deleteCart = id => {
+            fetch(`http://localhost:8080/cart/${id}`, {
+                method: 'DELETE'
+            })
+        }
+        const updateCart = (id, name, color, capacity) => {
+            const newQuantity = Number(document.getElementById(`cart-${id}`).value)
+            fetch(`http://localhost:8080/cart/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name,
+                    color,
+                    capacity,
+                    quantity: newQuantity
+                })
+            })
+        }
+        fetch(`http://localhost:8080/cart`).then(res => res.json()).then(cart => {
+            cart.forEach((cartProduct, idx) => {
+                document.getElementById('cart').insertAdjacentHTML('beforeend', `
+                    <tr>
+                        <th scope="row">${idx + 1}</th>
+                        <td>${cartProduct.name}</td>
+                        <td>${cartProduct.color}</td>
+                        <td>${cartProduct.capacity}</td>
+                        <td>
+                            <input type="number" class="quantity form-control" id="cart-${cartProduct.id}" value="${cartProduct.quantity}" onChange="updateCart('${cartProduct.id}', '${cartProduct.name}', '${cartProduct.color}', '${cartProduct.capacity}')">
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger" onclick="deleteCart('${cartProduct.id}')">刪除</button>
+                        </td>
+                    </tr>
+                `)
+            })
+        })
+    </script>
+</body>
+
+</html>
