@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+</head>
+
+<body>
+    <section class="pt-5 pb-3 bg-light">
+        <div class="container">
+            <h1 class="mb-3 d-flex align-items-center">
+                <div id="product-name" class="me-2"></div>
+                <a href="/cart.html"><button class="btn btn-outline-primary">前往購物車</button> </a>
+            </h1>
+
+        </div>
+
+    </section>
+    <section class="py-3 container">
+        <form id="form" action="http://localhost:8080/cart" method="post">
+            <div class="d-flex align-items-center mb-3">
+                <div class="me-2">顏色</div>
+                <div id="color" class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                </div>
+            </div>
+            <div class="d-flex align-items-center mb-3">
+                <div class="me-2">尺寸</div>
+                <div id="capacity" class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                </div>
+            </div>
+            <div class="d-flex align-items-center mb-5">
+                <div class="me-2">數量</div>
+                <div class="col-auto">
+                    <input type="number" name="quantity" class="form-control me-1" id="quantity" value="1">
+                    <div id="quantity"></div>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">加入購物車</button>
+        </form>
+
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script>
+        const searchParams = new URLSearchParams(window.location.search)
+        const id = searchParams.get('id')
+        let selectedColor, selectedCapacity
+        fetch(`http://localhost:8080/products/${id}`).then(res => res.json()).then(product => {
+            document.getElementById('product-name').innerHTML = product.name
+            const colors = _.uniq(product.variants.map(variant => variant.color))
+            const capacitirs = _.uniq(product.variants.map(variant => variant.capacity))
+            colors.forEach(color => {
+                document.querySelector('#color').insertAdjacentHTML('beforeend', `
+                    <input type="radio" class="btn-check" name="color" id="${color}" value="${color}" autocomplete="off"">
+                    <label class="btn btn-outline-primary" for="${color}">${color}</label>
+                `)
+            })
+            capacitirs.forEach(capacity => {
+                document.querySelector('#capacity').insertAdjacentHTML('beforeend', `
+                    <input type="radio" class="btn-check" name="capacity" id="${capacity}" value="${capacity}" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="${capacity}">${capacity}</label>
+                `)
+            })
+        })
+        document.getElementById('form').onsubmit = function (e) {
+            e.preventDefault()
+            const name = document.querySelector('#product-name').innerHTML
+            const color = document.querySelector('input[name="color"]:checked').value
+            const capacity = document.querySelector('input[name="capacity"]:checked').value
+            const quantity = Number(document.querySelector('input[name="quantity"]').value)
+            fetch('http://localhost:8080/cart', {
+                method: 'POST',
+                body: JSON.stringify({ name, color, capacity, quantity }),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

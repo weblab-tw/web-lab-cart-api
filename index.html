@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <title>電商練習</title>
+</head>
+
+<body>
+    <section class="pt-5 pb-3 bg-light">
+        <div class="container">
+            <h1 class="mb-3 d-flex align-items-center">
+                <span class="me-2">電商系統練習</span>
+                <a href="/cart.html"><button class="btn btn-outline-primary">前往購物車</button> </a>
+            </h1>
+        </div>
+    </section>
+    <section id="section-products" class="py-3 container">
+    </section>
+    <script>
+        const $productsSection = document.querySelector('#section-products')
+        fetch('http://localhost:8080/products').then(res => res.json()).then(products => {
+            products.forEach(product => {
+                $productsSection.insertAdjacentHTML('beforeend', `
+                <a href="/product.html?id=${product.id}">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">${product.variants.map(variant => `${variant.color}(${variant.capacity})`)}</p>
+                        </div>
+                    </div>
+                </a>
+                `)
+            })
+        })
+    </script>
+</body>
+
+</html>
