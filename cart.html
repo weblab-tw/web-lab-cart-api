@@ -66,7 +66,7 @@
                         <td>${cartProduct.color}</td>
                         <td>${cartProduct.capacity}</td>
                         <td>
-                            <input type="number" class="quantity form-control" id="cart-${cartProduct.id}" value="${cartProduct.quantity}" onChange="updateCart('${cartProduct.id}', '${cartProduct.name}', '${cartProduct.color}', '${cartProduct.capacity}')">
+                            <input type="number" class="quantity form-control" id="cart-${cartProduct.id}" value="${cartProduct.quantity}" min="1" onChange="updateCart('${cartProduct.id}', '${cartProduct.name}', '${cartProduct.color}', '${cartProduct.capacity}')">
                         </td>
                         <td>
                             <button class="btn btn-outline-danger" onclick="deleteCart('${cartProduct.id}')">刪除</button>
