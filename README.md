@@ -19,7 +19,7 @@
 ## API(json-server)
 
 - GitHub: [https://github.com/max80713/web-lab-cart-api](https://github.com/max80713/web-lab-cart-api)
-- host: [http://localhost:3000](http://localhost:3000)
+- host: [http://localhost:8080](http://localhost:8080)
 - 商品
     - 取得商品
         - GET /products/:productID
