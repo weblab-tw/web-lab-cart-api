@@ -45,11 +45,12 @@
 
     </section>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="./apis.js"></script>
     <script>
+        const api = new Api();
         const searchParams = new URLSearchParams(window.location.search)
         const id = searchParams.get('id')
-        let selectedColor, selectedCapacity
-        fetch(`http://localhost:8080/products/${id}`).then(res => res.json()).then(product => {
+        api.getProductById(id).then(product => {
             document.getElementById('product-name').innerHTML = product.name
             const colors = _.uniq(product.variants.map(variant => variant.color))
             const capacitirs = _.uniq(product.variants.map(variant => variant.capacity))
@@ -72,13 +73,7 @@
             const color = document.querySelector('input[name="color"]:checked').value
             const capacity = document.querySelector('input[name="capacity"]:checked').value
             const quantity = Number(document.querySelector('input[name="quantity"]').value)
-            fetch('http://localhost:8080/cart', {
-                method: 'POST',
-                body: JSON.stringify({ name, color, capacity, quantity }),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            })
+            api.addProductToCart(name, color, capacity, quantity);
         }
     </script>
 </body>
