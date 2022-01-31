@@ -21,9 +21,11 @@
     </section>
     <section id="section-products" class="py-3 container">
     </section>
+    <script src="./apis.js"></script>
     <script>
+        const api = new Api();
         const $productsSection = document.querySelector('#section-products')
-        fetch('http://localhost:8080/products').then(res => res.json()).then(products => {
+        api.listProducts().then(products => {
             products.forEach(product => {
                 $productsSection.insertAdjacentHTML('beforeend', `
                 <a href="/product.html?id=${product.id}">
