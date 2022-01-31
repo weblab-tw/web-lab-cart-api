@@ -48,7 +48,6 @@
     <script>
         const searchParams = new URLSearchParams(window.location.search)
         const id = searchParams.get('id')
-        let selectedColor, selectedCapacity
         fetch(`http://localhost:8080/products/${id}`).then(res => res.json()).then(product => {
             document.getElementById('product-name').innerHTML = product.name
             const colors = _.uniq(product.variants.map(variant => variant.color))
